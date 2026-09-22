@@ -1,0 +1,13 @@
+{
+    "title": "Migrate authentication sessions to new cache",
+    "files_changed": 68,
+    "lines_added": 920,
+    "lines_deleted": 310,
+    "files": [
+        "src/auth/session.py",
+        "src/auth/login.py",
+        "src/cache/session_cache.py",
+        "src/database/migration_001.py",
+        "tests/auth/test_login.py"
+    ]
+}

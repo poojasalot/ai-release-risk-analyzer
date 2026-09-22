@@ -1,72 +1,139 @@
-# AI Release Risk Analyzer[WIP]
+# AI Release Risk Analyzer
 
-AI-assisted engineering tool that analyzes GitHub pull requests and identifies potential release risks.
+An AI-assisted engineering tool that analyzes pull requests and identifies potential release risks.
 
 ## Problem
 
-Large and complex pull requests can introduce production risks that are difficult to identify through traditional code review alone.
+Large software changes can introduce production risk through:
 
-The goal of this project is to analyze pull request metadata, code changes, tests, dependencies, and historical signals to provide an explainable release-risk assessment.
+- Large code changes
+- Critical system modifications
+- Database migrations
+- Missing test coverage
+- High-risk infrastructure changes
 
-## Goals
+Traditional code review can miss combinations of these signals.
 
-- Analyze pull request changes
-- Identify potential production risks
-- Provide explainable risk factors
-- Recommend additional validation
-- Integrate with GitHub pull requests
-- Demonstrate AI-assisted engineering workflows
-
-## Planned Architecture
+## Architecture
 
 GitHub Pull Request
         |
         v
-Webhook
-        |
-        v
 PR Analyzer
         |
-        +---- Code Analysis
-        |
-        +---- Test Analysis
-        |
-        +---- Change Analysis
-        |
-        +---- Historical Signals
+        v
+Risk Signal Extraction
         |
         v
-Risk Engine
+Deterministic Risk Engine
         |
         v
-LLM Analysis
+Risk Score
         |
         v
-Risk Report
+Local LLM
         |
         v
-GitHub PR Comment
+AI Risk Assessment
+        |
+        v
+Engineering Recommendation
 
-## Planned Technology
+## Design Principle
+
+The system separates deterministic risk detection from AI reasoning.
+
+Deterministic logic provides:
+
+- Explainability
+- Repeatability
+- Testability
+- Predictable behavior
+
+The LLM provides:
+
+- Contextual analysis
+- Risk explanation
+- Recommended validation
+- Deployment strategy suggestions
+
+## Current Features
+
+- Pull request metadata analysis
+- Critical file detection
+- Database migration detection
+- Test-change detection
+- Deterministic risk scoring
+- Local LLM assessment
+- Automated engineering recommendations
+
+## Technology
 
 - Python
-- GitHub API
-- LLM
-- Docker
-- PostgreSQL
-- GitHub Actions
+- Ollama
+- Qwen
+- Pytest
+
+## Example
+
+Input:
+
+Migration of authentication sessions to a new cache.
+
+Output:
+
+Risk Level: HIGH
+
+Risk factors:
+
+- Large code change
+- Authentication code modified
+- Database migration detected
+
+AI recommendations:
+
+- Additional integration testing
+- Canary deployment
+- Increased monitoring after deployment
+
+## Future Architecture
+
+The project will evolve toward:
+
+GitHub App
+    |
+    v
+Webhook
+    |
+    v
+PR Analysis Service
+    |
+    +---- Static Analysis
+    |
+    +---- Test Analysis
+    |
+    +---- Dependency Analysis
+    |
+    +---- Historical Incidents
+    |
+    v
+Risk Engine
+    |
+    v
+LLM
+    |
+    v
+GitHub PR Comment
+
+## Future Improvements
+
+- GitHub App integration
+- Historical incident data
+- Code ownership
+- Dependency risk analysis
+- Test coverage analysis
+- Deployment risk
+- Structured LLM output
+- Risk evaluation dataset
 - OpenTelemetry
-
-## Engineering Considerations
-
-- Reliability
-- Explainability
-- Security
-- Observability
-- False positives
-- Cost
-- Scalability
-
-## Status
-
-🚧 Initial project setup
+- CI/CD integration
